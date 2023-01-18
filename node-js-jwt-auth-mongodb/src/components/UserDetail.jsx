@@ -3,7 +3,7 @@ import { useQuery } from "react-query"
 import { useParams, useNavigate } from "react-router-dom"
 
 const getDetail = async (id) => {
-    const response = await fetch('http://localhost:3004/users/' + id)
+    const response = await fetch('http://localhost:8080/api/v1/oneUser/' + id)
     if (!response.ok) {
         throw new Error('Network response was not ok')
     }
@@ -36,7 +36,7 @@ const UserDetail = () => {
                     </thead>
                     <tbody>
                         <tr>
-                            <th scope="row">{query.data?.id}</th>
+                            <th scope="row">{query.data?._id}</th>
                             <td>{query.data?.name}</td>
                             <td>{query.data?.email}</td>
                             <td>{query.data?.age}</td>

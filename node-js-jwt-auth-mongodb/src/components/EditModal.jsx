@@ -6,7 +6,7 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, La
 const ModalEdit = ({ userID }) => {
     const queryClient = useQueryClient()
     const query = queryClient.getQueryData('user')
-    const currentUser = query.find(q => q.id === userID)
+    const currentUser = query.find(q => q._id === userID)
 
     const [modal, setModal] = useState(false);
     const toggle = () => setModal(!modal);

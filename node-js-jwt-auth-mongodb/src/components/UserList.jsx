@@ -5,7 +5,7 @@ import { useQuery } from 'react-query'
 import { Link, useNavigate } from 'react-router-dom'
 
 const getUser = async () => {
-    const response = await fetch('http://localhost:3004/users')
+    const response = await fetch('http://localhost:8080/api/v1/allUsers')
     if (!response.ok) {
         throw new Error('Network response was not ok')
     }
@@ -42,14 +42,14 @@ const UserList = () => {
                     <tbody>
                         {
                             query.data?.map((user) => (
-                                <tr key={user.id}>
-                                    <th scope="row">{user.id}</th>
+                                <tr key={user._id}>
+                                    <th scope="row">{user._id}</th>
                                     <td>{user.name}</td>
                                     <td>{user.email}</td>
                                     <td>{user.age}</td>
-                                    <td><Link to={`/user/${user.id}`} >View Details</Link></td>
-                                    <td><ModalEdit userID={user.id} /></td>
-                                    <td><ModalDelete userID={user.id} /></td>
+                                    <td><Link to={`/user/${user._id}`} >View Details</Link></td>
+                                    <td><ModalEdit userID={user._id} /></td>
+                                    <td><ModalDelete userID={user._id} /></td>
                                 </tr>
                             ))
                         }

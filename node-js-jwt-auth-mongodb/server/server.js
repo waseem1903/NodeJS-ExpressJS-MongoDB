@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
-const users = require("../users");
 const app = express();
+// const users = require("../users");
 const dbCon = require('./config/db.config')
 const db = require("./models");
 const Role = db.role;
@@ -16,7 +16,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 // simple route
 app.get("/", (req, res) => {
-    res.json(users);
+    res.send('welcome to the node server');
 });
 
 // connecting to the database
@@ -45,27 +45,22 @@ function initial() {
                 if (err) {
                     console.log("error", err);
                 }
-
                 console.log("added 'user' to roles collection");
             });
-
             new Role({
                 name: "moderator"
             }).save(err => {
                 if (err) {
                     console.log("error", err);
                 }
-
                 console.log("added 'moderator' to roles collection");
             });
-
             new Role({
                 name: "admin"
             }).save(err => {
                 if (err) {
                     console.log("error", err);
                 }
-
                 console.log("added 'admin' to roles collection");
             });
         }
@@ -73,7 +68,7 @@ function initial() {
 }
 
 // routes
-require('./routes/auth.routes')(app);
+// require('./routes/auth.routes')(app);
 require('./routes/user.routes')(app);
 
 // set port, listen for requests
